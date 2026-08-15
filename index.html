@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Проверка доступа</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Игровой экран загрузки -->
+    <section id="loading-screen" class="loading-screen">
+        <div class="loading-noise"></div>
+        <div id="flashlight-cursor" class="flashlight-cursor" aria-hidden="true">
+            <span></span>
+        </div>
+
+        <div class="loading-interface">
+            <div class="loading-topline loading-status-dot">
+                PRIVATE ACCESS
+            </div>
+
+            <div class="loading-copy">
+                <h1>DENISIK</h1>
+            </div>
+
+            <div class="loading-progress-area">
+                <p id="loading-message" class="loading-message">
+                    Частная комната ожидает
+                </p>
+
+                <div class="loading-progress-meta">
+                    <span id="loading-step">ЗАГРУЗКА МОДУЛЕЙ</span>
+                    <span id="loading-percent">0%</span>
+                </div>
+
+                <div class="loading-track">
+                    <div id="loading-progress" class="loading-progress"></div>
+                    <div id="loading-handle" class="loading-handle"></div>
+                </div>
+
+                <button id="enter-room-button" class="enter-room-button" disabled>
+                    <span>ВОЙТИ В КОМНАТУ</span>
+                    <span class="door-icon" aria-hidden="true">
+                        <i></i>
+                    </span>
+                </button>
+            </div>
+
+            <div class="loading-footer">
+                <span>ROOM №02</span>
+            </div>
+        </div>
+
+        <audio id="loading-sound" preload="auto">
+            <source src="loading-sound.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <button id="global-back-button" class="global-back-button hidden" type="button">
+        <span aria-hidden="true">←</span>
+        <span>НАЗАД</span>
+    </button>
+
+    <button id="global-next-button"
+            class="global-next-button hidden"
+            type="button">
+        <span>ПРОПУСТИТЬ</span>
+        <span aria-hidden="true">→</span>
+    </button>
+
+    <button id="visited-places-button"
+            class="visited-places-button hidden"
+            type="button">
+        <span>ПОСЕЩЕНО</span>
+    </button>
+
+    <button id="sound-toggle-button"
+            class="sound-toggle-button"
+            type="button"
+            aria-label="Выключить звук"
+            title="Выключить звук">
+        <span id="sound-toggle-icon" class="sound-toggle-icon" aria-hidden="true">
+            <svg class="sound-icon sound-icon-on"
+                 viewBox="0 0 24 24"
+                 fill="none">
+                <path d="M4 9.5V14.5H8L13 18.5V5.5L8 9.5H4Z"/>
+                <path d="M16 9C17.25 10.25 17.25 13.75 16 15"/>
+                <path d="M18.7 6.7C21.2 9.2 21.2 14.8 18.7 17.3"/>
+            </svg>
+            <svg class="sound-icon sound-icon-off"
+                 viewBox="0 0 24 24"
+                 fill="none">
+                <path d="M4 9.5V14.5H8L13 18.5V5.5L8 9.5H4Z"/>
+                <path d="M16 9L21 14"/>
+                <path d="M21 9L16 14"/>
+            </svg>
+        </span>
+    </button>
+
+    <audio id="questions-soundtrack" preload="auto" loop>
+        <source src="media/minecraft_cut.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="button-click-sound" preload="auto">
+        <source src="media/click1.wav" type="audio/wav">
+    </audio>
+
+    <!-- Экран ввода пароля -->
+    <section id="password-screen" class="screen access-screen hidden">
+        <div class="access-video-shade"></div>
+
+        <div class="access-panel">
+            <p class="access-label">
+                <span></span>
+                PRIVATE ROOM / AUTHORIZATION
+            </p>
+            <h1>ВВЕДИТЕ ПАРОЛЬ</h1>
+            <p class="access-description">
+                Для продолжения подтвердите право доступа
+            </p>
+
+            <div class="access-input-wrap">
+            <input
+                id="password-input"
+                class="access-input"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="off"
+            >
+                <span class="access-input-mark">01</span>
+            </div>
+
+            <button id="password-button" class="access-submit-button">
+                <span>ПРОДОЛЖИТЬ</span>
+                <span aria-hidden="true">→</span>
+            </button>
+
+            <p id="password-error" class="error"></p>
+        </div>
+    </section>
+
+    <!-- Сообщение об утечке -->
+    <section id="leak-screen" class="screen security-screen hidden">
+        <div class="security-shade"></div>
+
+        <div id="denied-intro" class="denied-intro">
+            <div class="denied-lock" aria-hidden="true">
+                <span></span>
+            </div>
+            <p>SECURITY PROTOCOL</p>
+            <h1>ACCESS DENIED</h1>
+            <span id="denied-code" class="denied-code">
+                ERROR / KEY COMPROMISED
+            </span>
+        </div>
+
+        <div id="security-terminal" class="security-terminal hidden">
+            <div class="terminal-header">
+                <span class="terminal-dot"></span>
+                <span>SECURITY CONSOLE</span>
+                <span>INCIDENT №01</span>
+            </div>
+
+            <div id="security-log" class="security-log"></div>
+
+            <div id="security-loading" class="security-loading hidden">
+                <div class="security-loading-meta">
+                    <span>ЗАПУСК ПРОТОКОЛА</span>
+                    <span id="security-loading-percent">0%</span>
+                </div>
+                <div class="security-loading-track">
+                    <div id="security-loading-progress"></div>
+                </div>
+            </div>
+
+            <button id="start-questions-button"
+                    class="secondary-identification-button hidden">
+                <span>НАЧАТЬ ВТОРИЧНУЮ ИДЕНТИФИКАЦИЮ</span>
+                <span aria-hidden="true">→</span>
+            </button>
+        </div>
+
+        <audio id="access-denied-sound" preload="auto">
+            <source src="media/accessdenied.mp3" type="audio/mpeg">
+        </audio>
+
+        <audio id="verification-loading-sound" preload="auto" loop>
+            <source src="media/loading-sound.wav" type="audio/wav">
+        </audio>
+    </section>
+
+    <!-- Три вопроса -->
+    <section id="questions-screen" class="screen question-room-screen hidden">
+        <div class="question-room">
+            <div class="question-tv-zone">
+                <div class="room-light"></div>
+                <div class="tv-set">
+                    <div class="tv-frame">
+                        <div class="tv-screen">
+                            <div class="tv-no-signal">
+                                <span>SIGNAL / 01</span>
+                            </div>
+                            <video class="question-video" autoplay muted loop
+                                   playsinline preload="auto">
+                                <source src="media/minecraft.mp4" type="video/mp4">
+                            </video>
+                            <div class="tv-glare"></div>
+                        </div>
+                        <div class="tv-brand">LG</div>
+                    </div>
+                    <div class="tv-neck"></div>
+                    <div class="tv-stand"></div>
+                </div>
+                <div class="desk-surface"></div>
+                <p class="tv-caption">
+                    <span></span>
+                    ARCHIVE PLAYBACK
+                </p>
+            </div>
+
+            <div class="question-panel">
+                <div class="question-panel-header">
+                    <span>SECONDARY IDENTIFICATION</span>
+                    <span>SECURE / ACTIVE</span>
+                </div>
+
+                <p id="question-number" class="question-number"></p>
+                <h1 id="question-text"></h1>
+
+                <label class="question-input-label" for="answer-input">
+                    ВВЕДИТЕ ОТВЕТ
+                </label>
+                <input
+                    id="answer-input"
+                    class="question-answer-input"
+                    type="text"
+                    placeholder="Ваш ответ"
+                    autocomplete="off"
+                >
+
+                <button id="answer-button" class="question-answer-button">
+                    <span>ОТВЕТИТЬ</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+
+                <p id="answer-error" class="error question-error"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Последний вопрос -->
+    <section id="final-question-screen"
+             class="screen question-room-screen hidden">
+        <div class="question-room">
+            <div class="question-tv-zone">
+                <div class="room-light"></div>
+                <div class="tv-set">
+                    <div class="tv-frame">
+                        <div class="tv-screen">
+                            <div class="tv-no-signal">
+                                <span>SIGNAL / FINAL</span>
+                            </div>
+                            <video class="question-video" autoplay muted loop
+                                   playsinline preload="auto">
+                                <source src="media/minecraft.mp4" type="video/mp4">
+                            </video>
+                            <div class="tv-glare"></div>
+                        </div>
+                        <div class="tv-brand">LG</div>
+                    </div>
+                    <div class="tv-neck"></div>
+                    <div class="tv-stand"></div>
+                </div>
+                <div class="desk-surface"></div>
+                <p class="tv-caption">
+                    <span></span>
+                    FINAL ARCHIVE
+                </p>
+            </div>
+
+            <div class="question-panel">
+                <div class="question-panel-header">
+                    <span>FINAL VERIFICATION</span>
+                    <span>SECURE / ACTIVE</span>
+                </div>
+
+                <p class="question-number">Последний проверочный вопрос</p>
+                <h1 id="final-question-text">
+                    Здесь будет последний вопрос
+                </h1>
+
+                <label class="question-input-label" for="final-answer-input">
+                    ВВЕДИТЕ ОТВЕТ
+                </label>
+                <input
+                    id="final-answer-input"
+                    class="question-answer-input"
+                    type="text"
+                    placeholder="Ваш ответ"
+                    autocomplete="off"
+                >
+
+                <button id="final-answer-button" class="question-answer-button">
+                    <span>ОТВЕТИТЬ</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+
+                <p id="final-answer-error"
+                   class="error question-error"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Доступ подтверждён -->
+    <section id="success-screen" class="screen granted-screen hidden">
+        <div class="granted-shade"></div>
+
+        <div class="granted-room">
+            <div class="granted-tv-zone">
+                <div class="room-light"></div>
+                <div class="tv-set granted-tv-set">
+                    <div class="tv-frame">
+                        <div class="tv-screen powered-off-screen">
+                            <div class="powered-off-glow"></div>
+                            <video id="broken-tv-video"
+                                   class="granted-tv-video hidden"
+                                   muted loop playsinline preload="auto">
+                                <source src="media/broken-tv.mp4" type="video/mp4">
+                            </video>
+                            <video id="gigaden-video"
+                                   class="granted-tv-video hidden"
+                                   playsinline preload="auto">
+                                <source src="media/gigaden.mp4" type="video/mp4">
+                            </video>
+                            <div class="tv-glare"></div>
+                        </div>
+                        <div class="tv-brand">LG</div>
+                    </div>
+                    <div class="tv-neck"></div>
+                    <div class="tv-stand"></div>
+                </div>
+                <div class="desk-surface"></div>
+            </div>
+
+            <div class="granted-panel">
+                <p class="granted-protocol">
+                    <span></span>
+                    AUTHENTICATION COMPLETE
+                </p>
+
+                <div id="granted-lock" class="granted-lock" aria-hidden="true">
+                    <div class="granted-shackle"></div>
+                    <div class="granted-lock-body">
+                        <i></i>
+                    </div>
+                </div>
+
+                <h1 id="granted-title" class="granted-title">
+                    ACCESS GRANTED
+                </h1>
+
+                <div id="granted-message" class="granted-message"></div>
+
+                <button id="continue-button"
+                        class="granted-continue-button hidden">
+                    <span>ДАЛЕЕ</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <audio id="lock-open-sound" preload="auto">
+            <source src="media/lock-open.wav" type="audio/wav">
+        </audio>
+        <audio id="access-granted-sound" preload="auto">
+            <source src="media/accessgranted.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="broken-tv-sound" preload="auto" loop>
+            <source src="media/broken-tv.wav" type="audio/wav">
+        </audio>
+    </section>
+
+    <!-- Выбор настроения -->
+    <section id="mood-screen" class="screen mood-screen hidden">
+        <div class="mood-container">
+            <div class="mood-heading">
+                <p><span></span>PERSONAL SCENARIO</p>
+                <h1>Выберите настроение</h1>
+            </div>
+
+            <div class="mood-layout">
+                <div class="mood-main-column">
+                    <p class="mood-section-label">01 / НАСТРОЕНИЕ</p>
+                    <div class="mood-grid">
+                        <button class="mood-card mood-happy" data-mood="Весёлое">
+                            <span class="mood-title">Весёлое</span>
+                            <span class="mood-text">Хочется смеяться и радоваться</span>
+                        </button>
+
+                        <button class="mood-card mood-classic" data-mood="Классика">
+                            <span class="mood-title">Классика</span>
+                            <span class="mood-text">Знакомая атмосфера и проверенные временем идеи</span>
+                        </button>
+
+                        <button class="mood-card mood-romantic" data-mood="Романтичное">
+                            <span class="mood-title">Романтичное</span>
+                            <span class="mood-text">Тепло, нежность и немного магии</span>
+                        </button>
+
+                        <button class="mood-card mood-ceremonial" data-mood="Торжественное">
+                            <span class="mood-title">Торжественное</span>
+                            <span class="mood-text">Особенный повод, яркие эмоции и праздничный настрой</span>
+                        </button>
+
+                        <button class="mood-card mood-creative" data-mood="Творческое">
+                            <span class="mood-title">Творческое</span>
+                            <span class="mood-text">Вдохновение, эксперименты и свобода воображения</span>
+                        </button>
+
+                        <button class="mood-card mood-mystical" data-mood="Мистическое">
+                            <span class="mood-title">Мистическое</span>
+                            <span class="mood-text">Тайны, символы и немного необъяснимого</span>
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="food-column">
+                    <p class="mood-section-label">02 / ФОРМАТ</p>
+                    <div class="food-choices">
+                        <button class="food-choice" data-food-choice="Еда">
+                            <span class="food-choice-title">Еда</span>
+                            <span class="food-choice-mark">+</span>
+                        </button>
+                        <button class="food-choice" data-food-choice="Не еда">
+                            <span class="food-choice-title">Не еда</span>
+                            <span class="food-choice-mark">+</span>
+                        </button>
+                    </div>
+                    <p class="food-hint">
+                        Можно выбрать один или сразу оба варианта
+                    </p>
+                </aside>
+            </div>
+
+            <div class="mood-footer">
+                <p id="selected-mood" class="selected-mood">
+                    Сделайте выбор
+                </p>
+                <div class="mood-actions">
+                    <button id="random-mood-button" class="mood-random-button">
+                        Выбрать за меня
+                    </button>
+                    <button id="mood-ready-button"
+                            class="mood-ready-button"
+                            disabled>
+                        <span>ГОТОВО</span>
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Посещённые места -->
+    <section id="visited-places-screen"
+             class="screen visited-places-screen hidden">
+        <form id="visited-auth-panel"
+              class="visited-auth-panel hidden">
+            <p class="mood-section-label">SECURE CLOUD ARCHIVE</p>
+            <h1>ВХОД В АРХИВ</h1>
+            <p>
+                Войдите в общий аккаунт, чтобы синхронизировать
+                впечатления, фотографии и видео.
+            </p>
+            <label>
+                <span>EMAIL</span>
+                <input id="visited-auth-email"
+                       type="email"
+                       autocomplete="username"
+                       required>
+            </label>
+            <label>
+                <span>ПАРОЛЬ</span>
+                <input id="visited-auth-password"
+                       type="password"
+                       autocomplete="current-password"
+                       required>
+            </label>
+            <p id="visited-auth-error"
+               class="visited-auth-error"
+               aria-live="polite"></p>
+            <button id="visited-auth-submit" type="submit">
+                <span>ОТКРЫТЬ АРХИВ</span>
+                <span aria-hidden="true">→</span>
+            </button>
+        </form>
+
+        <div id="visited-places-container"
+             class="visited-places-container hidden">
+            <p class="mood-section-label">
+                PERSONAL ARCHIVE
+            </p>
+            <h1>ПОСЕЩЁННЫЕ МЕСТА</h1>
+            <button id="visited-sign-out"
+                    class="visited-sign-out"
+                    type="button">
+                ВЫЙТИ ИЗ АРХИВА
+            </button>
+            <div id="visited-places-placeholder"
+                 class="visited-places-placeholder">
+                <span>00</span>
+                <p>Здесь появятся места, которые вы уже посетили</p>
+            </div>
+            <div id="visited-places-list"
+                 class="visited-places-page-list"></div>
+        </div>
+    </section>
+
+    <!-- Дневник посещённого места -->
+    <section id="visited-place-detail-screen"
+             class="screen visited-place-detail-screen hidden">
+        <div class="visited-place-detail-shade"></div>
+        <div class="visited-place-detail-container">
+            <p class="visited-place-detail-label">PERSONAL ARCHIVE / VISITED</p>
+
+            <article class="visited-place-summary">
+                <img id="visited-detail-image" src="" alt="">
+                <div>
+                    <span id="visited-detail-mood"></span>
+                    <h1 id="visited-detail-title"></h1>
+                    <p id="visited-detail-description"></p>
+                    <strong id="visited-detail-rating"></strong>
+                </div>
+            </article>
+
+            <div class="visited-journal-grid">
+                <label class="visited-journal-panel">
+                    <span>МОЁ ВПЕЧАТЛЕНИЕ</span>
+                    <textarea id="author-impression"
+                              placeholder="Что мне запомнилось..."
+                              maxlength="5000"></textarea>
+                    <small id="author-impression-status">СОХРАНЕНО В ОБЛАКЕ</small>
+                </label>
+
+                <label class="visited-journal-panel">
+                    <span>ВПЕЧАТЛЕНИЕ ДЕНИСА</span>
+                    <textarea id="denis-impression"
+                              placeholder="Что запомнилось Денису..."
+                              maxlength="5000"></textarea>
+                    <small id="denis-impression-status">СОХРАНЕНО В ОБЛАКЕ</small>
+                </label>
+
+                <section class="visited-journal-panel visited-media-panel">
+                    <div class="visited-media-heading">
+                        <span>ФОТО И ВИДЕО</span>
+                        <label class="visited-media-upload">
+                            <input id="visited-media-input"
+                                   type="file"
+                                   accept="image/*,video/*"
+                                   multiple>
+                            <span>+ ЗАГРУЗИТЬ</span>
+                        </label>
+                    </div>
+                    <p id="visited-media-empty"
+                       class="visited-media-empty">
+                        Здесь появятся ваши фото и видео
+                    </p>
+                </section>
+            </div>
+
+            <section id="visited-gallery-section"
+                     class="visited-gallery-section hidden">
+                <div class="visited-gallery-heading">
+                    <span>MEMORY ARCHIVE</span>
+                    <h2>ГАЛЕРЕЯ</h2>
+                </div>
+                <div id="visited-media-gallery"
+                     class="visited-media-gallery"></div>
+            </section>
+        </div>
+
+        <div id="visited-gallery-lightbox"
+             class="visited-gallery-lightbox hidden"
+             role="dialog"
+             aria-modal="true"
+             aria-label="Просмотр галереи">
+            <button id="visited-gallery-close"
+                    class="visited-gallery-close"
+                    type="button"
+                    aria-label="Закрыть галерею">×</button>
+            <button id="visited-gallery-previous"
+                    class="visited-gallery-navigation is-previous"
+                    type="button"
+                    aria-label="Предыдущий файл">←</button>
+            <div id="visited-gallery-stage"
+                 class="visited-gallery-stage"></div>
+            <button id="visited-gallery-next"
+                    class="visited-gallery-navigation is-next"
+                    type="button"
+                    aria-label="Следующий файл">→</button>
+            <p id="visited-gallery-counter"
+               class="visited-gallery-counter"></p>
+        </div>
+    </section>
+
+    <!-- Страница выбранного настроения -->
+    <section id="music-screen"
+             class="screen mood-detail-screen hidden">
+        <div class="mood-detail-shade"></div>
+        <div class="mood-detail-container">
+            <p class="mood-detail-label">PERSONAL SCENARIO</p>
+            <h1 id="music-mood">НАСТРОЕНИЕ</h1>
+            <p id="mood-detail-format"
+               class="mood-detail-format"></p>
+
+            <div class="mood-detail-actions">
+                <button id="best-rated-place-button"
+                        class="mood-detail-button">
+                    <span>01</span>
+                    <strong>Лучшее по рейтингу</strong>
+                    <span aria-hidden="true">→</span>
+                </button>
+                <button id="random-place-button"
+                        class="mood-detail-button">
+                    <span>02</span>
+                    <strong>Выбрать случайно</strong>
+                    <span aria-hidden="true">→</span>
+                </button>
+                <button id="mood-list-button"
+                        class="mood-detail-button">
+                    <span>03</span>
+                    <strong>Список</strong>
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+
+            <label class="include-visited-option">
+                <input id="include-visited-toggle"
+                       type="checkbox">
+                <span class="include-visited-check"
+                      aria-hidden="true"></span>
+                <span>
+                    ВКЛЮЧАТЬ ПОСЕЩЁННЫЕ В ВЫБОР
+                    <small>
+                        влияет только на случайное и лучшее по рейтингу
+                    </small>
+                </span>
+            </label>
+
+            <div class="mood-audio-status">
+                <span class="mood-audio-pulse" aria-hidden="true"></span>
+                <span id="mood-audio-label">ATMOSPHERE AUDIO / SOON</span>
+            </div>
+
+            <audio id="mood-music" preload="auto"></audio>
+        </div>
+
+        <div id="random-place-reveal"
+             class="random-place-reveal hidden"
+             aria-hidden="true">
+            <div class="dice-stage">
+                <div class="glowing-dice">
+                    <span class="dice-face dice-front">●</span>
+                    <span class="dice-face dice-back">● ●<br>● ●</span>
+                    <span class="dice-face dice-right">● ●<br>●</span>
+                    <span class="dice-face dice-left">● ●<br>● ●<br>● ●</span>
+                    <span class="dice-face dice-top">● ●<br>● ●<br>●</span>
+                    <span class="dice-face dice-bottom">●<br>●</span>
+                </div>
+                <p>СЛУЧАЙНЫЙ МАРШРУТ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Случайное место -->
+    <section id="place-screen"
+             class="screen place-result-screen hidden">
+        <div class="place-result-shade"></div>
+        <div class="place-container">
+            <p class="place-result-label">ВАША СУДЬБА</p>
+            <article id="place-card"
+                     class="place-card"
+                     role="button"
+                     tabindex="0"
+                     aria-expanded="false">
+                <div id="place-image" class="place-image"></div>
+                <div class="place-card-content">
+                    <div class="place-card-meta">
+                        <span id="place-type">DESTINATION</span>
+                        <strong id="place-rating">10/10</strong>
+                    </div>
+                    <h1 id="place-title"></h1>
+                    <div class="place-quick-facts">
+                        <span id="place-cuisine"></span>
+                        <span id="place-duration"></span>
+                        <span id="place-fear"></span>
+                        <span id="place-price"></span>
+                    </div>
+                    <p id="place-description"></p>
+                    <span id="place-open-hint"
+                          class="place-open-hint">
+                        НАЖМИТЕ, ЧТОБЫ ОТКРЫТЬ ОПИСАНИЕ
+                    </span>
+                </div>
+
+                <div id="place-expanded-content"
+                     class="place-expanded-content hidden">
+                    <div id="place-rating-breakdown"
+                         class="place-rating-breakdown"></div>
+                    <div id="place-details"
+                         class="place-details"></div>
+                    <div id="restaurant-content"
+                         class="restaurant-content hidden"></div>
+                    <div id="place-comment"
+                         class="place-comment hidden">
+                        <span>МОЙ КОММЕНТАРИЙ</span>
+                        <p id="place-comment-text"></p>
+                    </div>
+                    <div id="place-link-section"
+                         class="place-link-section hidden">
+                        <span>ПОДРОБНЕЕ</span>
+                        <a id="place-link"
+                           href="#"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Открыть страницу события
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                    <div id="place-gallery"
+                         class="place-gallery"></div>
+                    <button id="collapse-place-button"
+                            class="collapse-place-button"
+                            type="button">
+                        Свернуть
+                        <span aria-hidden="true">↑</span>
+                    </button>
+                </div>
+            </article>
+
+            <div class="place-actions">
+                <button id="reroll-place-button">
+                    Выбрать снова
+                </button>
+                <button id="open-collection-button">
+                    Открыть список
+                </button>
+                <button id="visit-place-button">Посетить</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="delete-visit-dialog"
+         class="delete-visit-dialog hidden"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="delete-visit-title">
+        <div class="delete-visit-dialog-panel">
+            <p>ARCHIVE WARNING</p>
+            <h2 id="delete-visit-title">УДАЛИТЬ ПОСЕЩЕНИЕ?</h2>
+            <span>
+                Все впечатления, фотографии и видео этого посещения
+                будут удалены без возможности восстановления.
+            </span>
+            <div class="delete-visit-dialog-actions">
+                <button id="cancel-delete-visit"
+                        type="button">НЕТ</button>
+                <button id="confirm-delete-visit"
+                        type="button">ДА, УДАЛИТЬ</button>
+            </div>
+            <small id="delete-visit-status"
+                   aria-live="polite"></small>
+        </div>
+    </div>
+
+    <!-- Вся подборка -->
+    <section id="collection-screen"
+             class="screen collection-screen hidden">
+        <div class="collection-screen-shade"></div>
+        <div class="collection-container">
+            <p class="collection-label">PERSONAL SCENARIO</p>
+            <h1>СПИСОК СОБЫТИЙ</h1>
+            <div id="places-collection" class="places-collection"></div>
+            <p id="collection-empty"
+               class="collection-empty hidden">
+                Для выбранного настроения и формата событий пока нет
+            </p>
+            <button id="back-to-place-button">
+                Вернуться к настроению
+            </button>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
