@@ -465,6 +465,20 @@ function playButtonClickSound() {
     buttonClickSound.play().catch(() => {});
 }
 
+function unlockAccessDeniedSound() {
+    const wasMuted = accessDeniedSound.muted;
+    accessDeniedSound.muted = true;
+    accessDeniedSound.play()
+        .then(() => {
+            accessDeniedSound.pause();
+            accessDeniedSound.currentTime = 0;
+            accessDeniedSound.muted = wasMuted;
+        })
+        .catch(() => {
+            accessDeniedSound.muted = wasMuted;
+        });
+}
+
 function toggleSound() {
     const willMute = !isSoundMuted;
 
@@ -1382,9 +1396,11 @@ function completeGrantedSequenceForTesting() {
 }
 
 passwordButton.addEventListener("click", checkPassword);
+passwordButton.addEventListener("pointerdown", unlockAccessDeniedSound);
 
 passwordInput.addEventListener("keydown", event => {
     if (event.key === "Enter") {
+        unlockAccessDeniedSound();
         checkPassword();
     }
 });
@@ -1394,9 +1410,11 @@ startQuestionsButton.addEventListener("click", () => {
 });
 
 answerButton.addEventListener("click", checkCurrentAnswer);
+answerButton.addEventListener("pointerdown", unlockAccessDeniedSound);
 
 answerInput.addEventListener("keydown", event => {
     if (event.key === "Enter") {
+        unlockAccessDeniedSound();
         checkCurrentAnswer();
     }
 });
