@@ -8,7 +8,7 @@
     "duration": "60 мин",
     "fear": 2,
     "price": "5 500–9 000 ₽",
-    "image": "media/fnaf1.png",
+    "image": "media/fnaf1-optimized.jpg",
     "gallery": ["media/fnaf2.png", "media/fnaf3.png"],
     "ratings": {"denis": 6, "author": 10, "price": 6, "emotions": 9},
     "shortDescription": "Первая ночная смена в заброшенной пиццерии, где старые аниматроники начинают оживать.",
@@ -33,7 +33,7 @@
     "duration": "60 мин",
     "fear": 3,
     "price": "от 5 000 ₽",
-    "image": "media/ghost1.png",
+    "image": "media/ghost1-optimized.jpg",
     "gallery": ["media/ghost2.png", "media/ghost3.png"],
     "ratings": {"denis": 10, "author": 8, "price": 7, "emotions": 10},
     "shortDescription": "Особняк на Maple Street, необъяснимые явления и новая жизнь, которая начинается как настоящий кошмар.",
@@ -78,7 +78,7 @@
     "moods": ["Мистическое"],
     "formats": ["Еда"],
     "price": "Средний чек 2 000-5 000 ₽",
-    "image": "media/trosti-kosti-main.png",
+    "image": "media/trosti-kosti-main-optimized.jpg",
     "gallery": [
       "media/trosti-kosti-interior.png",
       "media/trosti-kosti-interior2.png"
@@ -137,7 +137,7 @@
     "moods": ["Мистическое"],
     "formats": ["Еда"],
     "price": "Средний чек 8 000 ₽",
-    "image": "media/dark-main.png",
+    "image": "media/dark-main-optimized.jpg",
     "gallery": [
       "media/dark-interior.png", "media/dark-interior2.png"
     ],
@@ -175,7 +175,7 @@
     "moods": ["Мистическое"],
     "formats": ["Еда"],
     "price": "Средний чек 6 000 ₽",
-    "image": "media/mr-pinky-main.png",
+    "image": "media/mr-pinky-main-optimized.jpg",
     "gallery": [
       "media/mr-pinky-interior.png",
       "media/mr-pinky-interior2.png"
@@ -247,7 +247,7 @@
     "moods": ["Мистическое"],
     "formats": ["Еда"],
     "price": "Средний чек 3 600 ₽",
-    "image": "media/voron-main.png",
+    "image": "media/voron-main-optimized.jpg",
     "gallery": [
       "media/voron-interior1.png",
       "media/voron-interior2.png"

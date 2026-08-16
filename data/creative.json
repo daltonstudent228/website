@@ -22,7 +22,7 @@
     "price": "5000+ ₽",
     "moods": ["Творческое"],
     "formats": ["Не еда"],
-    "image": "media/buyperfume.png",
+    "image": "media/buyperfume-optimized.jpg",
     "gallery": ["media/buyperfume1.jpeg", "media/buyperfume2.jpeg"],
     "ratings": {"denis": 10, "author": 10, "price": 7, "emotions": 5},
   "shortDescription": "Наконец выберем тебе духи, от которых я не смогу оторваться.",
@@ -60,7 +60,7 @@
     "price": "7980 ₽",
     "moods": ["Творческое"],
     "formats": ["Не еда"],
-    "image": "media/aroma.png",
+    "image": "media/aroma-optimized.jpg",
     "gallery": ["media/aroma1.png", "media/aroma2.png"],
     "ratings": {"denis": 5, "author": 9, "price": 5, "emotions": 6},
   "shortDescription": "Создайте уникальные ароматы для нашей квартиры. Чтобы Денис больше никогда не мучался от запаха из туалета.",
@@ -121,7 +121,7 @@
     "moods": ["Творческое"],
     "formats": ["Еда"],
     "price": "Средний чек 4 800 ₽",
-    "image": "media/wine-main.png",
+    "image": "media/wine-main-optimized.jpg",
     "gallery": [
       "media/wine-interior1.png",
       "media/wine-interior2.png"
@@ -160,7 +160,7 @@
     "moods": ["Творческое"],
     "formats": ["Еда"],
     "price": "Средний чек 4 000 ₽",
-    "image": "media/fondu-main.png",
+    "image": "media/fondu-main-optimized.jpg",
     "gallery": [
       "media/fondu-interior1.png",
       "media/fondu-interior2.png"

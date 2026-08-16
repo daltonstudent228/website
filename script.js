@@ -1852,6 +1852,8 @@ function renderCollection() {
         const image = document.createElement("img");
         image.src = place.image;
         image.alt = place.title;
+        image.loading = "lazy";
+        image.decoding = "async";
 
         const content = document.createElement("div");
         content.className = "collection-card-content";

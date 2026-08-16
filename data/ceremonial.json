@@ -5,7 +5,7 @@
     "moods": ["Торжественное"],
     "formats": ["Не еда", "Еда"],
     "price": "от 11800 ₽ + еда",
-    "image": "media/show.png",
+    "image": "media/show-optimized.jpg",
     "gallery": ["media/show1.png", "media/show2.png"],
     "ratings": {"denis": 6, "author": 5, "price": 3, "emotions": 8},
     "shortDescription": "Уютная атмосфера роскоши и декаданса в каждом вздохе, блеск страз в пронзающих софитах, томный джаз и романтика кабаре ушедшей эпохи — целый мир открыт для Вас в этот таинственный вечер!",
@@ -29,7 +29,7 @@
     "moods": ["Торжественное"],
     "formats": ["Еда"],
     "price": "Средний чек 6 000 ₽",
-    "image": "media/bb-main.png",
+    "image": "media/bb-main-optimized.jpg",
     "gallery": [
       "media/bb-interior.png",
       "media/bb-interior2.png"
@@ -127,7 +127,7 @@
     "moods": ["Торжественное"],
     "formats": ["Еда"],
     "price": "Средний чек 7 000 ₽",
-    "image": "media/siberia-main.png",
+    "image": "media/siberia-main-optimized.jpg",
     "gallery": [
       "media/siberia-interior.png",
       "media/siberia-interior2.png"
@@ -180,7 +180,7 @@
     "moods": ["Торжественное"],
     "formats": ["Еда"],
     "price": "Средний чек 4 600 ₽",
-    "image": "media/frantsuza-main.png",
+    "image": "media/frantsuza-main-optimized.jpg",
     "gallery": [
       "media/frantsuza-interior1.png",
       "media/frantsuza-interior2.png"
@@ -289,7 +289,7 @@
     "moods": ["Торжественное"],
     "formats": ["Еда"],
     "price": "Средний чек 5 800 ₽",
-    "image": "media/mansion.png",
+    "image": "media/mansion-optimized.jpg",
     "gallery": [
       "media/mansion-interior1.png",
       "media/mansion-interior2.png"

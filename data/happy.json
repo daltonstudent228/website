@@ -73,7 +73,7 @@
     "moods": ["Весёлое"],
     "formats": ["Еда"],
     "price": "Средний чек 1 600 ₽",
-    "image": "media/bullpen-main.png",
+    "image": "media/bullpen-main-optimized.jpg",
     "gallery": [
       "media/bullpen-interior.jpg"
     ],

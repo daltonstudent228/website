@@ -22,7 +22,7 @@
     "moods": ["Романтичное"],
     "formats": ["Не еда"],
     "price": "от 5000 ₽",
-    "image": "media/spa.png",
+    "image": "media/spa-optimized.jpg",
     "gallery": ["media/spa1.png", "media/spa2.png"],
     "ratings": {"denis": 7, "author": 7, "price": 7, "emotions": 7},
     "shortDescription": "«Скайфолл» — это место, где время замедляется, а город остаётся где-то ниже. Здесь вы не просто отдыхаете — вы парите над Петербургом!",
@@ -47,7 +47,7 @@
     "moods": ["Романтичное"],
     "formats": ["Еда"],
     "price": "Средний чек 4 000 ₽",
-    "image": "media/koi-main.png",
+    "image": "media/koi-main-optimized.jpg",
     "gallery": [
       "media/koi1.png",
       "media/koi2.jpeg"
@@ -102,7 +102,7 @@
     "moods": ["Романтичное"],
     "formats": ["Еда"],
     "price": "Средний чек 2 000-4 000 ₽",
-    "image": "media/cassa-main.png",
+    "image": "media/cassa-main-optimized.jpg",
     "gallery": [
       "media/cassa-interior1.png",
       "media/cassa-interior2.png"

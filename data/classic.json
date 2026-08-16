@@ -74,7 +74,7 @@
     "moods": ["Классика"],
     "formats": ["Еда"],
     "price": "Средний чек 2 800 ₽",
-    "image": "media/min-main.png",
+    "image": "media/min-main-optimized.jpg",
     "gallery": [
       "media/min-interior1.png",
       "media/min-interior2.png"
@@ -154,7 +154,7 @@
     "moods": ["Классика"],
     "formats": ["Еда"],
     "price": "Средний чек 4 600 ₽",
-    "image": "media/jpan-main.png",
+    "image": "media/jpan-main-optimized.jpg",
     "gallery": [
       "media/jpan-interior1.png",
       "media/jpan-interior2.png"
@@ -193,7 +193,7 @@
     "moods": ["Классика"],
     "formats": ["Еда"],
     "price": "Средний чек 2 600 ₽",
-    "image": "media/loza-main.png",
+    "image": "media/loza-main-optimized.jpg",
     "gallery": [
       "media/loza-interior1.png",
       "media/loza-interior2.png"
@@ -253,7 +253,7 @@
     "moods": ["Классика"],
     "formats": ["Еда"],
     "price": "Средний чек 3 200 ₽",
-    "image": "media/gills-main.png",
+    "image": "media/gills-main-optimized.jpg",
     "gallery": [
       "media/gills-interior1.png",
       "media/gills-interior2.png"
@@ -316,7 +316,7 @@
     "title": "Ресторан Duo Band",
     "moods": ["Классика"],
     "formats": ["Еда"],
-    "image": "media/duoband.jpg",
+    "image": "media/duoband-optimized.jpg",
     "price": "5000 ₽",
     "ratings": {"denis": 6, "author": 5, "price": 7, "emotions": 4},
     "shortDescription": "Выбрать вместе ресторан от Duo Band",
