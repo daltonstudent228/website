@@ -293,28 +293,28 @@ const eventDataReady = loadEventData().then(async () => {
 
 const moodPageThemes = {
     "Весёлое": {
-        image: "media/happy-background.png",
+        image: "media/happy-background-optimized.jpg",
         color: "#E89A32"
     },
     "Классика": {
-        image: "media/classic-background.png",
+        image: "media/classic-background-optimized.jpg",
         color: "#A64914"
     },
     "Романтичное": {
-        image: "media/romantic-background.png",
+        image: "media/romantic-background-optimized.jpg",
         color: "#c27272",
         shadeOpacity: 1
     },
     "Торжественное": {
-        image: "media/ceremonial-background.jpeg",
+        image: "media/ceremonial-background-optimized.jpg",
         color: "#7B4AA3"
     },
     "Творческое": {
-        image: "media/creative-background.png",
+        image: "media/creative-background-optimized.jpg",
         color: "#327320"
     },
     "Мистическое": {
-        image: "media/mystery-background.png",
+        image: "media/mystery-background-optimized.jpg",
         color: "#A72B2B",
         shadeOpacity: 0
     }
